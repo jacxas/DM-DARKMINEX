@@ -1,28 +1,114 @@
-import WalletInfo from "@/components/WalletInfo"
-import TokenPrice from "@/components/TokenPrice"
-import BuyPanel from "@/components/BuyPanel"
-import AIChat from "@/components/AIChat"
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
+import WalletInfo from "@/components/WalletInfo";
+import TokenPrice from "@/components/TokenPrice";
+import BuyPanel from "@/components/BuyPanel";
+import AIChat from "@/components/AIChat";
 
-export default function Dashboard(){
+const tokenomicsData = [
+  { name: 'Core Team', value: 15, color: '#4ade80' }, // Green
+  { name: 'Staking Rewards', value: 40, color: '#60a5fa' }, // Blue
+  { name: 'DAO Treasury', value: 25, color: '#fbbf24' }, // Amber
+  { name: 'Public Sale', value: 20, color: '#94a3b8' }, // Slate
+];
 
-  return(
-
-    <main className="min-h-screen bg-black text-white p-10">
-
-      <h1 className="text-5xl text-green-400 font-bold">
-        Dashboard
-      </h1>
-
-      <div className="grid md:grid-cols-3 gap-6 mt-10">
-        <WalletInfo />
-        <TokenPrice />
-        <BuyPanel />
+function TokenomicsChart() {
+  return (
+    <div className="p-6 bg-zinc-900/50 border border-zinc-800 rounded-2xl backdrop-blur-sm">
+      <h3 className="text-xl font-bold mb-6 text-green-400 font-mono tracking-tighter uppercase">
+        Token Distribution
+      </h3>
+      <div className="h-[300px] w-full">
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart data={tokenomicsData} layout="vertical" margin={{ left: 20, right: 30, top: 10, bottom: 10 }}>
+            <CartesianGrid strokeDasharray="3 3" stroke="#27272a" horizontal={true} vertical={false} />
+            <XAxis type="number" hide />
+            <YAxis 
+              dataKey="name" 
+              type="category" 
+              tick={{ fill: '#94a3b8', fontSize: 12, fontFamily: 'monospace' }}
+              width={100}
+            />
+            <Tooltip
+              cursor={{ fill: 'transparent' }}
+              contentStyle={{ 
+                backgroundColor: '#09090b', 
+                border: '1px solid #27272a',
+                borderRadius: '8px',
+                fontSize: '12px'
+              }}
+              itemStyle={{ color: '#fff' }}
+              formatter={(value: number) => [`${value}%`, 'Allocation']}
+            />
+            <Bar dataKey="value" radius={[0, 4, 4, 0]} barSize={20}>
+              {tokenomicsData.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={entry.color} />
+              ))}
+            </Bar>
+          </BarChart>
+        </ResponsiveContainer>
       </div>
-
-      <div className="mt-10 max-w-4xl">
-        <AIChat />
+      
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8">
+        {tokenomicsData.map((item, i) => (
+          <div key={i} className="flex flex-col gap-1">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: item.color }} />
+              <span className="text-[10px] text-zinc-500 font-mono uppercase tracking-widest">{item.name}</span>
+            </div>
+            <span className="text-lg font-bold text-white">{item.value}%</span>
+          </div>
+        ))}
       </div>
+    </div>
+  );
+}
 
+export default function Dashboard() {
+  return (
+    <main className="min-h-screen bg-black text-white p-6 md:p-10">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+          <div>
+            <p className="text-green-500 font-mono text-xs uppercase tracking-widest mb-1">Ecosystem Terminal</p>
+            <h1 className="text-5xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white to-zinc-500">
+              DASHBOARD
+            </h1>
+          </div>
+          <div className="text-right font-mono text-zinc-500 text-xs">
+            STATUS: <span className="text-green-400">OPERATIONAL</span>
+          </div>
+        </div>
+
+        <div className="grid lg:grid-cols-3 gap-6 mb-10">
+          <WalletInfo />
+          <TokenPrice />
+          <BuyPanel />
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-8 items-start">
+          <div className="space-y-8">
+            <TokenomicsChart />
+            <div className="p-6 bg-zinc-950 border border-zinc-900 rounded-2xl">
+              <h4 className="text-sm font-mono text-zinc-500 uppercase mb-4">Contract Efficiency</h4>
+              <div className="grid grid-cols-3 gap-4">
+                {[
+                  { label: "Stability", value: "99.2%" },
+                  { label: "Yield", value: "14.5%" },
+                  { label: "Circulation", value: "62.1M" }
+                ].map((stat, i) => (
+                  <div key={i}>
+                    <p className="text-[10px] text-zinc-600 mb-1">{stat.label}</p>
+                    <p className="text-xl font-bold">{stat.value}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="h-full">
+            <AIChat />
+          </div>
+        </div>
+      </div>
     </main>
-  )
+  );
 }
