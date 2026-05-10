@@ -17,15 +17,19 @@ export const metadata: Metadata = {
   description: "A minimal decentralized platform for the DARKMINE ecosystem featuring DAO governance, staking, cross-chain bridging, and AI-powered ecosystem insights.",
 };
 
+import { ThemeProvider } from "@/components/ThemeProvider";
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
-      <body className="bg-black text-white antialiased">
-        {children}
+    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${jetbrainsMono.variable}`}>
+      <body className="bg-white dark:bg-black text-zinc-900 dark:text-white antialiased transition-colors duration-300">
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

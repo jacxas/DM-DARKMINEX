@@ -1,25 +1,55 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Target, TrendingUp, Vote, Clock, CheckCircle2 } from 'lucide-react';
 import ProposalCard from "@/components/ProposalCard";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import TransactionModal, { TransactionStatus } from '@/components/TransactionModal';
 
 export default function Governance() {
+  // Modal State
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalStatus, setModalStatus] = useState<TransactionStatus>('idle');
+  const [modalError, setModalError] = useState("");
+  const [txHash, setTxHash] = useState("");
+  const [voteChoice, setVoteChoice] = useState<'For' | 'Against'>('For');
+
+  const handleVote = (choice: 'For' | 'Against') => {
+    setVoteChoice(choice);
+    setModalStatus('confirming');
+    setIsModalOpen(true);
+  };
+
+  const confirmVote = async () => {
+    setModalStatus('processing');
+    
+    setTimeout(() => {
+      // 95% success rate for voting
+      if (Math.random() > 0.05) {
+        setTxHash("0x" + Array.from({length: 64}, () => Math.floor(Math.random() * 16).toString(16)).join(""));
+        setModalStatus('success');
+      } else {
+        setModalError("Governance contract reverted: Voting weight too low or already voted.");
+        setModalStatus('error');
+      }
+    }, 2500);
+  };
+
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-black text-white p-6 md:p-10">
+      <main className="min-h-screen bg-white dark:bg-black text-zinc-900 dark:text-white p-6 md:p-10 transition-colors duration-300">
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-center mb-10">
             <div>
-              <p className="text-green-500 font-mono text-xs uppercase tracking-[0.3em] mb-1">Decentralized Power</p>
+              <p className="text-green-600 dark:text-green-500 font-mono text-xs uppercase tracking-[0.3em] mb-1">Decentralized Power</p>
               <h1 className="text-5xl font-black tracking-tighter">
                 GOVERNANCE
               </h1>
             </div>
-            <button className="bg-zinc-900 text-white border border-zinc-800 px-6 py-3 rounded-2xl font-bold hover:bg-zinc-800 transition-all active:scale-95 flex items-center gap-2">
+            <button className="bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-white border border-zinc-200 dark:border-zinc-800 px-6 py-3 rounded-2xl font-bold hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-all active:scale-95 flex items-center gap-2">
               Create Proposal
             </button>
           </div>
@@ -89,13 +119,35 @@ export default function Governance() {
                   </div>
 
                   <div className="grid grid-cols-2 gap-4">
-                    <button className="flex items-center justify-center gap-2 bg-white text-black py-4 rounded-2xl font-black text-sm uppercase hover:bg-zinc-200 transition-colors">
+                    <button 
+                      onClick={() => handleVote('For')}
+                      className="flex items-center justify-center gap-2 bg-white text-black py-4 rounded-2xl font-black text-sm uppercase hover:bg-zinc-200 transition-colors"
+                    >
                       <Vote className="w-4 h-4" /> Vote For
                     </button>
-                    <button className="flex items-center justify-center gap-2 bg-zinc-800 text-white py-4 rounded-2xl font-black text-sm uppercase hover:bg-zinc-700 transition-colors">
+                    <button 
+                      onClick={() => handleVote('Against')}
+                      className="flex items-center justify-center gap-2 bg-zinc-800 text-white py-4 rounded-2xl font-black text-sm uppercase hover:bg-zinc-700 transition-colors"
+                    >
                       Against
                     </button>
                   </div>
+
+                  <TransactionModal
+                    isOpen={isModalOpen}
+                    onClose={() => setIsModalOpen(false)}
+                    status={modalStatus}
+                    title="Confirm Governance Vote"
+                    description="Your voting power will be permanently recorded for this proposal stage."
+                    details={[
+                      { label: "Proposal", value: "#142 Expand Mining" },
+                      { label: "Vote Choice", value: voteChoice },
+                      { label: "Voting Power", value: "24.5k DM" },
+                    ]}
+                    onConfirm={confirmVote}
+                    error={modalError}
+                    txHash={txHash}
+                  />
 
                   <div className="flex items-center justify-between font-mono text-[10px] text-zinc-500 uppercase tracking-widest px-2">
                     <div className="flex items-center gap-2">

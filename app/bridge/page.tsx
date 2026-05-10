@@ -6,7 +6,7 @@ export default function Bridge() {
   return (
     <>
       <Navbar />
-      <main className="bg-black text-white min-h-screen p-6 md:p-10 flex items-center justify-center">
+      <main className="bg-white dark:bg-black text-zinc-900 dark:text-white min-h-screen p-6 md:p-10 flex items-center justify-center transition-colors duration-300">
         <BridgePanel />
       </main>
       <Footer />

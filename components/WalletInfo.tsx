@@ -23,18 +23,18 @@ export default function WalletInfo() {
   }
 
   return (
-    <div className="bg-zinc-900 p-6 rounded-2xl border border-mine-800">
+    <div className="bg-zinc-50 dark:bg-zinc-900 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 transition-colors">
       <button
         onClick={connect}
-        className="bg-green-400 text-black px-4 py-2 rounded-xl font-bold hover:bg-green-300 transition-colors"
+        className="bg-green-600 dark:bg-green-400 text-white dark:text-black px-6 py-2 rounded-xl font-bold hover:opacity-90 transition-all uppercase text-xs tracking-widest"
       >
         {wallet ? "Connected" : "Connect Wallet"}
       </button>
 
       {wallet && (
         <div className="mt-4">
-          <p className="text-[10px] font-mono text-mine-600 uppercase mb-1">Active Account</p>
-          <p className="text-sm font-mono text-white break-all">
+          <p className="text-[10px] font-mono text-zinc-500 uppercase mb-1">Active Account</p>
+          <p className="text-sm font-mono text-zinc-900 dark:text-white break-all">
             {wallet}
           </p>
         </div>
