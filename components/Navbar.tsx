@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom';
+'use client';
+
+import Link from 'next/link';
 import { useState } from 'react';
 import { ethers } from 'ethers';
 
@@ -6,8 +8,8 @@ export default function Navbar() {
   const [wallet, setWallet] = useState("");
 
   async function connect() {
-    if (!(window as any).ethereum) {
-      alert("Please install MetaMask");
+    if (typeof window === 'undefined' || !(window as any).ethereum) {
+      console.warn("Please install MetaMask");
       return;
     }
     try {
@@ -22,7 +24,7 @@ export default function Navbar() {
 
   return (
     <nav className="flex justify-between items-center p-6 bg-mine-950/80 backdrop-blur-md sticky top-0 z-50">
-      <Link to="/" className="flex items-center gap-3">
+      <Link href="/" className="flex items-center gap-3">
         <img src="/logo.png" alt="DM DARKMINE Logo" className="w-10 h-10 object-contain" />
         <h1 className="text-2xl text-green-400 font-bold hidden sm:block">
           DM DARKMINE
@@ -31,11 +33,11 @@ export default function Navbar() {
 
       <div className="flex items-center gap-8">
         <div className="flex gap-6 font-mono text-sm uppercase tracking-widest text-zinc-500">
-          <Link to="/" className="hover:text-white transition-colors">Home</Link>
-          <Link to="/dashboard" className="hover:text-white transition-colors">Dashboard</Link>
-          <Link to="/staking" className="hover:text-white transition-colors">Staking</Link>
-          <Link to="/governance" className="hover:text-white transition-colors">DAO</Link>
-          <Link to="/bridge" className="hover:text-white transition-colors">Bridge</Link>
+          <Link href="/" className="hover:text-white transition-colors">Home</Link>
+          <Link href="/dashboard" className="hover:text-white transition-colors">Dashboard</Link>
+          <Link href="/staking" className="hover:text-white transition-colors">Staking</Link>
+          <Link href="/governance" className="hover:text-white transition-colors">DAO</Link>
+          <Link href="/bridge" className="hover:text-white transition-colors">Bridge</Link>
         </div>
 
         <button

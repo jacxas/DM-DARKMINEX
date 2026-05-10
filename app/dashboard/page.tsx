@@ -1,14 +1,18 @@
+'use client';
+
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 import WalletInfo from "@/components/WalletInfo";
 import TokenPrice from "@/components/TokenPrice";
 import BuyPanel from "@/components/BuyPanel";
 import AIChat from "@/components/AIChat";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const tokenomicsData = [
-  { name: 'Core Team', value: 15, color: '#4ade80' }, // Green
-  { name: 'Staking Rewards', value: 40, color: '#60a5fa' }, // Blue
-  { name: 'DAO Treasury', value: 25, color: '#fbbf24' }, // Amber
-  { name: 'Public Sale', value: 20, color: '#94a3b8' }, // Slate
+  { name: 'Core Team', value: 15, color: '#4ade80' },
+  { name: 'Staking Rewards', value: 40, color: '#60a5fa' },
+  { name: 'DAO Treasury', value: 25, color: '#fbbf24' },
+  { name: 'Public Sale', value: 20, color: '#94a3b8' },
 ];
 
 function TokenomicsChart() {
@@ -65,50 +69,54 @@ function TokenomicsChart() {
 
 export default function Dashboard() {
   return (
-    <main className="min-h-screen bg-black text-white p-6 md:p-10">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
-          <div>
-            <p className="text-green-500 font-mono text-xs uppercase tracking-widest mb-1">Ecosystem Terminal</p>
-            <h1 className="text-5xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white to-zinc-500">
-              DASHBOARD
-            </h1>
-          </div>
-          <div className="text-right font-mono text-zinc-500 text-xs">
-            STATUS: <span className="text-green-400">OPERATIONAL</span>
-          </div>
-        </div>
-
-        <div className="grid lg:grid-cols-3 gap-6 mb-10">
-          <WalletInfo />
-          <TokenPrice />
-          <BuyPanel />
-        </div>
-
-        <div className="grid lg:grid-cols-2 gap-8 items-start">
-          <div className="space-y-8">
-            <TokenomicsChart />
-            <div className="p-6 bg-zinc-950 border border-zinc-900 rounded-2xl">
-              <h4 className="text-sm font-mono text-zinc-500 uppercase mb-4">Contract Efficiency</h4>
-              <div className="grid grid-cols-3 gap-4">
-                {[
-                  { label: "Stability", value: "99.2%" },
-                  { label: "Yield", value: "14.5%" },
-                  { label: "Circulation", value: "62.1M" }
-                ].map((stat, i) => (
-                  <div key={i}>
-                    <p className="text-[10px] text-zinc-600 mb-1">{stat.label}</p>
-                    <p className="text-xl font-bold">{stat.value}</p>
-                  </div>
-                ))}
-              </div>
+    <>
+      <Navbar />
+      <main className="min-h-screen bg-black text-white p-6 md:p-10">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+            <div>
+              <p className="text-green-500 font-mono text-xs uppercase tracking-widest mb-1">Ecosystem Terminal</p>
+              <h1 className="text-5xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white to-zinc-500">
+                DASHBOARD
+              </h1>
+            </div>
+            <div className="text-right font-mono text-zinc-500 text-xs">
+              STATUS: <span className="text-green-400">OPERATIONAL</span>
             </div>
           </div>
-          <div className="h-full">
-            <AIChat />
+
+          <div className="grid lg:grid-cols-3 gap-6 mb-10">
+            <WalletInfo />
+            <TokenPrice />
+            <BuyPanel />
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-8 items-start">
+            <div className="space-y-8">
+              <TokenomicsChart />
+              <div className="p-6 bg-zinc-950 border border-zinc-900 rounded-2xl">
+                <h4 className="text-sm font-mono text-zinc-500 uppercase mb-4">Contract Efficiency</h4>
+                <div className="grid grid-cols-3 gap-4">
+                  {[
+                    { label: "Stability", value: "99.2%" },
+                    { label: "Yield", value: "14.5%" },
+                    { label: "Circulation", value: "62.1M" }
+                  ].map((stat, i) => (
+                    <div key={i}>
+                      <p className="text-[10px] text-zinc-600 mb-1">{stat.label}</p>
+                      <p className="text-xl font-bold">{stat.value}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div className="h-full">
+              <AIChat />
+            </div>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
+      <Footer />
+    </>
   );
 }

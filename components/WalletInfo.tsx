@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from "react";
 import { ethers } from "ethers";
 
@@ -5,9 +7,8 @@ export default function WalletInfo() {
   const [wallet, setWallet] = useState("");
 
   async function connect() {
-    // Check if window.ethereum exists (injected by MetaMask or similar)
-    if (!(window as any).ethereum) {
-      alert("Please install a Web3 wallet extension like MetaMask to connect.");
+    if (typeof window === 'undefined' || !(window as any).ethereum) {
+      console.warn("Please install a Web3 wallet extension like MetaMask to connect.");
       return;
     }
 

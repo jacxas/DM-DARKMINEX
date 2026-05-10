@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 export default function Hero() {
   return (
@@ -20,7 +20,7 @@ export default function Hero() {
       </p>
 
       <Link
-        to="/dashboard"
+        href="/dashboard"
         className="mt-10 bg-cyan-400 text-black px-8 py-4 rounded-xl font-bold hover:bg-cyan-300 transition-colors"
       >
         Launch App
