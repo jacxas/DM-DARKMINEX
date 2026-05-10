@@ -1,11 +1,16 @@
-<div align="center">
+# DMDARKMINE
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+A dark fantasy toolkit for Dungeon Masters focusing on subterranean exploration, twisted mining lore, and grim encounters.
 
-  <h1>Built with AI Studio</h2>
+## Features
+- **Chamber Generator**: Procedurally generate dark mine chambers with evocative sensory descriptions, lighting conditions, and hazards.
+- **Grim Encounters**: Manifest subterranean threats with varying intensities from low-risk nuisances to extreme boss encounters.
+- **Treasure & Ore**: Extract rare materials, crystals, and artifacts with rarity scales and mechanical effects.
+- **Battle Order**: A specialized initiative tracker for managing the "ticking clock of destiny" during combat.
 
-  <p>The fastest path from prompt to production with Gemini.</p>
-
-  <a href="https://aistudio.google.com/apps">Start building</a>
-
-</div>
+## Tech Stack
+- **React 19** with **Vite**
+- **Tailwind CSS 4** for "Sub-surface" aesthetic styling
+- **Motion** for smooth interface transitions
+- **Gemini 3 Flash** for procedural generation of dark fantasy content
+- **Lucide React** for hardware-inspired iconography
