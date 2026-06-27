@@ -2,7 +2,9 @@
 
 # ⛏️ DM-DARKMINEX
 
-**Toolkit de fantasía oscura para Dungeon Masters — Generación procedural de minas, encuentros y tesoros**
+**Dark fantasy toolkit for Dungeon Masters · Toolkit de fantasía oscura para Dungeon Masters**
+
+*Procedural generation of mines, encounters & treasures · Generación procedural de minas, encuentros y tesoros*
 
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178c6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)](https://react.dev/)
@@ -14,36 +16,39 @@
 
 ---
 
-## 🦤 ¿Qué es DM-DARKMINEX?
+A dark fantasy toolkit for Dungeon Masters focusing on subterranean exploration, twisted mining lore, and grim encounters — powered by procedural AI generation.
 
-DM-DARKMINEX es una herramienta de generación procedural para Dungeon Masters enfocada en exploración subterránea, minería oscura y encuentros sombríos. Usa **Gemini Flash** para generar descripciones envolventes, monstruos y tesoros on-the-fly.
+> Toolkit de fantasía oscura para Dungeon Masters centrado en exploración subterránea, lore minero retorcido y encuentros sombríos — impulsado por generación procedural con IA.
 
-## ✨ Características
+---
 
-- 🏛️ **Generador de Cámaras** — Genera minas subterráneas con descripciones sensoriales, condiciones de iluminación y peligros
-- ⚔️ **Encuentros Oscuros** — Amenazas subterráneas con intensidad variable: desde molestias menores hasta jefes extremos
-- 📜 **Tesoros y Minerales** — Materiales raros, cristales y artefactos con escalas de rareza y efectos mecánicos
-- ⏱️ **Orden de Batalla** — Tracker de iniciativa especializado con "reloj del destino" para combates
-- 🎨 Estética **Sub-Surface** — UI oscura e inmersiva optimizada para sesiones nocturnas
+## ✨ Features / Características
 
-## 🛠️ Stack Tecnológico
+- 🏛️ **Chamber Generator** — Procedurally generate dark mine chambers with evocative sensory descriptions, lighting conditions, and hazards. / Genera cámaras de mina con descripciones sensoriales, condiciones de luz y peligros.
+- ⚔️ **Grim Encounters** — Manifest subterranean threats from low-risk nuisances to extreme boss encounters. / Amenazas subterráneas de intensidad variable, desde molestias menores hasta jefes extremos.
+- 📜 **Treasure & Ore** — Extract rare materials, crystals, and artifacts with rarity scales and mechanical effects. / Extrae materiales raros, cristales y artefactos con escalas de rareza y efectos mecánicos.
+- ⏱️ **Battle Order** — Initiative tracker with the "ticking clock of destiny" for underground combat. / Rastreador de iniciativa con el "reloj del destino" para combates subterráneos.
+- 🎨 **Sub-Surface UI** — Dark, immersive interface optimized for night sessions. / Interfaz oscura e inmersiva optimizada para sesiones nocturnas.
 
-| Capa | Tecnología |
-|------|------------|
-| Frontend | React 19, TypeScript, Vite |
-| Estilos | Tailwind CSS 4 (tema Sub-Surface) |
-| Animaciones | Motion (Framer Motion) |
-| IA | Gemini Flash (Google AI) |
-| Iconos | Lucide React |
+## 🛠️ Tech Stack
 
-## 🚀 Inicio Rápido
+| Layer | Technology |
+|---|---|
+| Frontend | React 19 + Vite 6 |
+| Styling | Tailwind CSS 4 — *Sub-surface* aesthetic |
+| Animation | Motion |
+| AI Generation | Gemini Flash |
+| Icons | Lucide React |
+| Language | TypeScript 5.x |
 
-### Prerequisitos
+## 🚀 Quick Start / Inicio Rápido
+
+### Prerequisites / Prerequisitos
 
 - Node.js 20+
-- API Key de [Google AI Studio](https://ai.google.dev/)
+- API Key from / de [Google AI Studio](https://ai.google.dev/)
 
-### Instalación
+### Installation / Instalación
 
 ```bash
 git clone https://github.com/jacxas/DM-DARKMINEX.git
@@ -51,17 +56,17 @@ cd DM-DARKMINEX
 npm install
 ```
 
-### Configuración
+### Configuration / Configuración
 
 ```bash
 cp .env.example .env.local
 ```
 
 ```env
-VITE_GEMINI_API_KEY=tu_clave_aqui
+VITE_GEMINI_API_KEY=your_key_here
 ```
 
-### Ejecutar
+### Run / Ejecutar
 
 ```bash
 npm run dev
@@ -70,19 +75,19 @@ npm run dev
 ## 📦 Scripts
 
 ```bash
-npm run dev      # Desarrollo local
-npm run build    # Build de producción
-npm run preview  # Preview del build
+npm run dev      # Local development / Desarrollo local
+npm run build    # Production build / Build de producción
+npm run preview  # Build preview / Preview del build
 npm run lint     # Linter
 ```
 
-## 🎮 Uso
+## 🎮 Usage / Uso
 
-1. **Generar Cámara**: Configurá profundidad y tipo de mina → obtenés descripción generada por IA
-2. **Invocar Encuentro**: Seleccioná nivel de dificultad → el sistema genera el monstruo y sus stats
-3. **Extraer Tesoro**: Explorá la mina para encontrar materiales con rareza aleatoria
-4. **Batalla**: Usá el tracker de iniciativa para gestionar el combate
+1. **Generate Chamber / Generar Cámara** — Set depth and mine type → get AI-generated description / Configurá profundidad y tipo de mina → obtenés descripción generada por IA
+2. **Invoke Encounter / Invocar Encuentro** — Select difficulty → system generates monster and stats / Seleccioná nivel de dificultad → el sistema genera el monstruo y sus stats
+3. **Extract Treasure / Extraer Tesoro** — Explore the mine to find materials with random rarity / Explorá la mina para encontrar materiales con rareza aleatoria
+4. **Battle / Batalla** — Use the initiative tracker to manage combat / Usá el tracker de iniciativa para gestionar el combate
 
-## 📄 Licencia
+## 📄 License / Licencia
 
 MIT © [jacxas](https://github.com/jacxas)
