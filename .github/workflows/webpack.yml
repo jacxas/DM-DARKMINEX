@@ -1,10 +1,8 @@
 name: NodeJS with Webpack
 
+# Disabled: this repo has no webpack config; the starter workflow cannot build it.
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   build:

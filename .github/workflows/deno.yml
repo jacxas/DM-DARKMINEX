@@ -8,11 +8,10 @@
 
 name: Deno
 
+# Disabled: this repo is a Node/Next.js project, not a Deno project.
+# The Deno starter lint rules (no-node-globals, etc.) do not apply here.
 on:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
+  workflow_dispatch:
 
 permissions:
   contents: read
